@@ -54,8 +54,8 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
         title=f'Bootstrap Distribution of Sample Proportions (n={sample_size}, p={proportion})',
         xaxis_title='Sample Proportion',
         yaxis_title='Frequency',
-        width=1400,  # Double the width
-        height=800,  # Double the height
+        width=1600,  # Double the width
+        height=600,  # Double the height
         xaxis=dict(tickformat=".2f", dtick=0.01),
         plot_bgcolor='#f9f9f9',
         yaxis=dict(showgrid=False, zeroline=False),
