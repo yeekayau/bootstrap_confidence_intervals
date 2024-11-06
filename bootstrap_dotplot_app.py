@@ -44,17 +44,18 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
     fig.add_trace(go.Scatter(
         x=x, y=y,
         mode='markers',
-        marker=dict(size=4, color=colors, line=dict(width=0.5, color='black')),
+        marker=dict(size=4, color=colors, line=dict(width=0.0, color='black')),
         opacity=0.7,
         showlegend=False
     ))
 
     # Customize layout to make it narrower and display estimated standard error
     fig.update_layout(
-        title=f'Bootstrap Dot Plot of Sample Proportions (n={sample_size}, p={proportion})',
+        title=f'Bootstrap Distribution of Sample Proportions (n={sample_size}, p={proportion})',
         xaxis_title='Sample Proportion',
         yaxis_title='Frequency',
-        width=700,
+        width=1400,  # Double the width
+        height=800,  # Double the height
         xaxis=dict(tickformat=".2f", dtick=0.01),
         plot_bgcolor='#f9f9f9',
         yaxis=dict(showgrid=False, zeroline=False),
