@@ -72,7 +72,7 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
     return fig, std_error, red_dot_proportion
 
 # Streamlit app layout
-st.title("Bootstrap Dot Plot of Sample Proportions")
+st.title("Bootstrap Distribution of Sample Proportions")
 
 # Input fields
 sample_size = st.number_input("Sample Size", min_value=10, max_value=20000, value=200, step=10)
