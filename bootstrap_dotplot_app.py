@@ -18,6 +18,7 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
     x = []
     y = []
     colors = []
+    red_dot_count = 0  # Counter for red dots
     
     # Classify points based on their distance from the mean
     for i, count in enumerate(counts):
@@ -28,6 +29,14 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
         x.extend([bin_midpoint] * count)  # Repeat each bin's x position
         y.extend(range(count))            # y positions are stacked up for each bin
         colors.extend([color] * count)    # Assign color based on distance from the mean
+        
+        # Count red dots
+        if color == 'red':
+            red_dot_count += count
+
+    # Calculate the proportion of red dots
+    total_dots = len(x)
+    red_dot_proportion = red_dot_count / total_dots if total_dots > 0 else 0
 
     # Create the plotly dot plot
     fig = go.Figure()
@@ -59,7 +68,7 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
         ]
     )
 
-    return fig, std_error
+    return fig, std_error, red_dot_proportion
 
 # Streamlit app layout
 st.title("Bootstrap Dot Plot of Sample Proportions")
@@ -70,8 +79,9 @@ proportion = st.number_input("Proportion", min_value=0.0, max_value=1.0, value=0
 num_bootstrap_samples = st.number_input("Number of Bootstrap Samples", min_value=100, max_value=5000, value=1000, step=100)
 
 # Generate plot
-fig, std_error = bootstrap_dotplot(sample_size, proportion, num_bootstrap_samples)
+fig, std_error, red_dot_proportion = bootstrap_dotplot(sample_size, proportion, num_bootstrap_samples)
 st.plotly_chart(fig)
 
-# Display the estimated standard error
+# Display the estimated standard error and proportion of red dots
 st.write(f"**Estimated Standard Error:** {std_error:.4f}")
+st.write(f"**Proportion of Red Dots (2 or more SDs from Mean):** {red_dot_proportion:.4%}")
