@@ -74,9 +74,9 @@ def bootstrap_dotplot(sample_size=200, proportion=0.275, num_bootstrap_samples=1
 st.title("Bootstrap Dot Plot of Sample Proportions")
 
 # Input fields
-sample_size = st.number_input("Sample Size", min_value=10, max_value=1000, value=200, step=10)
+sample_size = st.number_input("Sample Size", min_value=10, max_value=20000, value=200, step=10)
 proportion = st.number_input("Proportion", min_value=0.0, max_value=1.0, value=0.275, step=0.01)
-num_bootstrap_samples = st.number_input("Number of Bootstrap Samples", min_value=100, max_value=5000, value=1000, step=100)
+num_bootstrap_samples = st.number_input("Number of Bootstrap Samples", min_value=100, max_value=20000, value=1000, step=100)
 
 # Generate plot
 fig, std_error, red_dot_proportion = bootstrap_dotplot(sample_size, proportion, num_bootstrap_samples)
